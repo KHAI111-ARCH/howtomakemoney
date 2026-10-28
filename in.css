@@ -1,0 +1,324 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0b0c10;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.game-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    max-height: 640px;
+    background-color: #1f2833;
+    box-shadow: 0 0 30px rgba(0, 225, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+}
+
+/* UI Overlay */
+.ui-overlay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.stat-badge {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(0, 225, 255, 0.3);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(4px);
+}
+
+.flex-col {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.label-tiny {
+    font-size: 9px;
+    color: #66fcf1;
+    letter-spacing: 1px;
+}
+
+.fuel-bar-bg {
+    width: 60px;
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.fuel-bar-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff0055, #00ffcc);
+    transition: width 0.2s ease;
+}
+
+.icon-gold { color: #f1c40f; }
+.icon-cyan { color: #66fcf1; }
+
+/* Status Badges */
+.status-overlay {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    animation: pulse 1s infinite alternate;
+}
+
+.badge-shield {
+    background: rgba(0, 200, 255, 0.8);
+    color: #fff;
+    box-shadow: 0 0 10px #00c8ff;
+}
+
+.badge-nos {
+    background: rgba(255, 0, 100, 0.8);
+    color: #fff;
+    box-shadow: 0 0 10px #ff0064;
+}
+
+/* Menu Screens */
+.menu-screen {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 12, 16, 0.92);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    z-index: 20;
+    backdrop-filter: blur(8px);
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #66fcf1;
+    text-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.title-danger {
+    color: #ff0055;
+    text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #c5c6c7;
+    margin-bottom: 25px;
+}
+
+/* Car Selector */
+.car-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.car-card {
+    background: rgba(31, 40, 51, 0.8);
+    border: 2px solid #66fcf1;
+    border-radius: 12px;
+    padding: 15px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.car-preview {
+    width: 40px;
+    height: 70px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.car-red { background: #e74c3c; border: 2px solid #ff7979; }
+.car-blue { background: #00d2d3; border: 2px solid #54a0ff; }
+.car-yellow { background: #f1c40f; border: 2px solid #ffeaa7; }
+
+.car-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.car-stats {
+    font-size: 11px;
+    color: #aaa;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.btn-arrow {
+    background: transparent;
+    border: 1px solid #66fcf1;
+    color: #66fcf1;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-arrow:hover {
+    background: #66fcf1;
+    color: #111;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #45a29e, #66fcf1);
+    color: #0b0c10;
+    box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(102, 252, 241, 0.7);
+}
+
+.instructions {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #888;
+    line-height: 1.6;
+}
+
+/* Results Card */
+.results-card {
+    background: rgba(31, 40, 51, 0.8);
+    border-radius: 10px;
+    padding: 15px 25px;
+    width: 220px;
+    margin-bottom: 25px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.text-gold { color: #f1c40f; }
+
+/* Mobile Controls */
+.mobile-controls {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.btn-touch {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    touch-action: manipulation;
+}
+
+.btn-touch:active {
+    background: rgba(102, 252, 241, 0.4);
+}
+
+.btn-touch-nos {
+    width: 70px;
+    height: 45px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    background: rgba(255, 0, 85, 0.3);
+    border-color: rgba(255, 0, 85, 0.5);
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    100% { transform: scale(1.05); opacity: 1; }
+}
+
+@media (min-width: 768px) {
+    .mobile-controls {
+        display: none;
+    }
+}
