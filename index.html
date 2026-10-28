@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Cyber Racing</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="game-container">
+        <!-- Canvas Permainan -->
+        <canvas id="gameCanvas" width="480" height="640"></canvas>
+
+        <!-- UI Dashboard Overlay -->
+        <div id="uiOverlay" class="ui-overlay hidden">
+            <div class="stat-badge">
+                <i class="fas fa-trophy icon-gold"></i>
+                <span id="scoreText">0m</span>
+            </div>
+            <div class="stat-badge">
+                <i class="fas fa-coins icon-gold"></i>
+                <span id="coinText">0</span>
+            </div>
+            <div class="stat-badge">
+                <i class="fas fa-tachometer-alt icon-cyan"></i>
+                <span id="speedText">0 KM/H</span>
+            </div>
+            <div class="stat-badge flex-col">
+                <div class="label-tiny">MINYAK</div>
+                <div class="fuel-bar-bg">
+                    <div id="fuelBar" class="fuel-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mesej Status Shield & NOS -->
+        <div id="statusOverlay" class="status-overlay">
+            <div id="shieldBadge" class="badge badge-shield hidden">
+                <i class="fas fa-shield-alt"></i> PERISAI AKTIF
+            </div>
+            <div id="nosBadge" class="badge badge-nos hidden">
+                <i class="fas fa-bolt"></i> NOS BOOST!
+            </div>
+        </div>
+
+        <!-- Skrin Utama / Menu -->
+        <div id="startScreen" class="menu-screen">
+            <h1 class="title">CYBER RACER</h1>
+            <p class="subtitle">Pilih Kereta Anda & Mulakan Lapan!</p>
+
+            <div class="car-selector">
+                <button id="prevCarBtn" class="btn-arrow"><i class="fas fa-chevron-left"></i></button>
+                <div class="car-card">
+                    <div id="carPreview" class="car-preview car-red"></div>
+                    <div id="carName" class="car-name">RED PHANTOM</div>
+                    <div class="car-stats">
+                        <span>Kelajuan: <strong id="carStatSpeed">Sederhana</strong></span>
+                        <span>Kawalan: <strong id="carStatHandling">Tinggi</strong></span>
+                    </div>
+                </div>
+                <button id="nextCarBtn" class="btn-arrow"><i class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <button id="startBtn" class="btn btn-primary">MULA MAIN</button>
+            
+            <div class="instructions">
+                <p><strong>Kawalan:</strong></p>
+                <p>Gunakan Kunci Anak Panah <i class="fas fa-arrow-left"></i> <i class="fas fa-arrow-right"></i> atau <strong>A/D</strong> untuk memandu.</p>
+                <p>Tekan <strong>SPACE</strong> untuk NOS Boost!</p>
+            </div>
+        </div>
+
+        <!-- Skrin Tamat Permainan (Game Over) -->
+        <div id="gameOverScreen" class="menu-screen hidden">
+            <h1 class="title title-danger">KEMALANGAN!</h1>
+            <p class="subtitle">Kereta anda telah rosak teruk.</p>
+
+            <div class="results-card">
+                <div class="result-row">
+                    <span>Jarak Dicapai:</span>
+                    <strong id="finalScore">0m</strong>
+                </div>
+                <div class="result-row">
+                    <span>Syiling Dikutip:</span>
+                    <strong id="finalCoins" class="text-gold">0</strong>
+                </div>
+            </div>
+
+            <button id="restartBtn" class="btn btn-primary">MAIN SEMULA</button>
+        </div>
+
+        <!-- Kawalan Sentuhan Mobile -->
+        <div class="mobile-controls">
+            <button id="btnLeft" class="btn-touch"><i class="fas fa-arrow-left"></i></button>
+            <button id="btnNos" class="btn-touch btn-touch-nos"><i class="fas fa-bolt"></i> NOS</button>
+            <button id="btnRight" class="btn-touch"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
